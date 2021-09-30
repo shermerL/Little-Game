@@ -119,7 +119,7 @@ body{
 
 
 /* 结束样式 */
-.gameWin{
+.game-Win{
     display: none;
     position: fixed;
     top:0;
@@ -141,12 +141,12 @@ body{
     padding: .25em .5em;
     cursor: pointer;
 }
-.gameWin button:hover{
+.game-Win button:hover{
     background-color: black;
     color: white;
     border-color: white;
 }
 
-.gameWin.show{
+.game-Win.show{
     display: flex;
 }
