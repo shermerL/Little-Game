@@ -4,6 +4,7 @@ const X_CLASS='x'
 const CIRCLE_CLASS='circle'
 const winMsg=document.getElementById('gameWin')
 const winTextMsg=document.querySelector('[data-win-text]')
+const rButton=document.getElementById('rButton')
 const WIN_COMBINATION=[
     [0,1,2],
     [0,4,8],
@@ -19,12 +20,20 @@ let circleTurn
 
 startGame()
 
+rButton.addEventListener('click',startGame)
+
+
 function startGame(){
     circleTurn=false
     cellElements.forEach(cell=>{
+        cell.classList.remove(X_CLASS)
+        cell.classList.remove(CIRCLE_CLASS)
+        cell.removeEventListener('click',handleClick)
+
     cell.addEventListener('click',handleClick,{once:true})
 })
     setTableHoverClass()
+    winMsg.classList.remove('show')
 } 
 
 
@@ -38,9 +47,12 @@ function handleClick(e){
     if(checkWin(currentClass)){
         // console.log('win')
         endGame(false)
-    }
+    }else if(isDraw()){
+        endGame(true)
+    }else{
     swapTurns()
     setTableHoverClass()
+    }
 }
 
 
@@ -73,9 +85,15 @@ function checkWin(currentClass){
 
 function endGame(draw){
     if(draw){
-
+        winTextMsg.innerText='游戏结束'
     }else{
-        winTextMsg.innerText=`${circleTurn?"O":"X"}赢了`
+        winTextMsg.innerText=`${circleTurn?"O":"你"}赢了`
     }
     winMsg.classList.add('show')
+}
+function isDraw(){
+    return [...cellElements].every(cell =>{
+        return cell.classList.contains(X_CLASS)||
+        cell.classList.contains(CIRCLE_CLASS)
+    })
 }
