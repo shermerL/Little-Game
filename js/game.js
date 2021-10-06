@@ -87,7 +87,7 @@ function endGame(draw){
     if(draw){
         winTextMsg.innerText='游戏结束'
     }else{
-        winTextMsg.innerText=`${circleTurn?"O":"你"}赢了`
+        winTextMsg.innerText=`${circleTurn?"你输":"你赢"}了`
     }
     winMsg.classList.add('show')
 }
