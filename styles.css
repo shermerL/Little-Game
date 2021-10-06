@@ -1,7 +1,7 @@
 :root{
     --cell-size:100px;
     /* 棋子显示的大小 */
-    --anCell-size:cal(var(--cell-size)*.9);
+    --anCell-size:calc(var(--cell-size)*.9);
 }
 
 body{
@@ -22,8 +22,13 @@ body{
     height: var(--cell-size);
     /* background-color: black; */
     border: 1px solid black;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer; 
 }
-
+/* 井字格 */
 .cell:first-child,
 .cell:nth-child(2),
 .cell:nth-child(3){
@@ -39,4 +44,109 @@ body{
 .cell:nth-child(7),
 .cell:nth-child(8){
     border-bottom: none;
+}
+
+
+/* 预览样式 */
+.gameTable.x .cell:not(.x):not(.circle):hover::before,
+.gameTable.x .cell:not(.x):not(.circle):hover::after,
+.gameTable.circle .cell:not(.x):not(.circle):hover::before,
+.gameTable.circle .cell:not(.x):not(.circle):hover::after{
+    background-color: lightgray;
+}
+
+.cell.x::before,
+.cell.x::after,
+.cell.circle::before,
+.cell.circle::after{
+    background-color: black;
+}
+
+
+
+
+
+
+/* 鼠标样式 */
+.cell.x,
+.cell.circle{
+    cursor: not-allowed;
+}
+
+
+/* 构建图形X */
+.cell.x::before,
+.cell.x::after,
+.gameTable.x .cell:not(.x):not(.circle):hover::before,
+.gameTable.x .cell:not(.x):not(.circle):hover::after{
+    position: absolute; 
+    content: '';
+    width:calc(var(--anCell-size)*.15);
+    height:var(--anCell-size);
+    background-color: black;
+}
+.cell.x::before,
+.gameTable.x .cell:hover::before{
+    transform: rotate(45deg);
+}
+.cell.x::after,
+.gameTable.x .cell:hover::after{
+    transform: rotate(-45deg);
+}
+
+/* 构建图形O */
+.cell.circle::before,
+.cell.circle::after,
+.gameTable.circle .cell:not(.x):not(.circle):hover::before,
+.gameTable.circle .cell:not(.x):not(.circle):hover::after{
+    position: absolute; 
+    content: '';
+    border-radius: 50%;
+    
+}
+.cell.circle::before,
+.gameTable.circle .cell:not(.x):not(.circle):hover::before{
+    width:var(--anCell-size);
+    height:var(--anCell-size);
+    /* background-color: black; */
+}
+.cell.circle::after,
+.gameTable.circle .cell:not(.x):not(.circle):hover::after{
+    width:calc(var(--anCell-size)*.7);
+    height:calc(var(--anCell-size)*.7);
+    background-color: white;
+}
+
+
+/* 结束样式 */
+.game-Win{
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    background-color: black;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+}
+.rButton{
+    font-size: 5rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+}
+.game-Win button:hover{
+    background-color: black;
+    color: white;
+    border-color: white;
+}
+
+.game-Win.show{
+    display: flex;
 }

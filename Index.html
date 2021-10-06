@@ -4,14 +4,33 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script> 
+    <link rel="stylesheet" href="./Sass/all.css">
+    <!-- <link rel="stylesheet" href="style_all.min.css"> -->
+    <script src="./js/popbox.js" defer></script> 
+    <script src="./js/game.js" defer></script>
     <title>Tic-Tac-Toe game</title>
 </head>
 <body>
+    <div>
+    <button data-model-target="#model">玩法提示</button>
+    <div class="model " id="model">
+        <div class="model-header">
+            <div class="title">Tips:</div>
+            <button data-close-button class="close_button">&times;</button>
+        </div>
+        
+        <div class="model-body">
+        <strong>井字棋玩法提示：</strong>当X或者O可在直线方向上连成三个时，即为获胜
+        </div>
+
+    </div>
+    <div id="overlay"></div>
+    </div>
+
+
     <div class="gameTable" id="gameTable">
-        <div class="cell" data-cell></div>
-        <div class="cell" data-cell></div>
+        <div class="cell " data-cell></div>
+        <div class="cell " data-cell></div>
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
@@ -20,10 +39,10 @@
         <div class="cell" data-cell></div>
         <div class="cell" data-cell></div>
     </div>
-    <div class="gameWin" id="gameWin">
+    <div class="game-Win " id="gameWin">
         <div data-win-text></div>
-        <button id="restartButton">重新开始</button>
-    </div>
+        <button id="rButton">重新开始</button>
+    </div> 
     
 </body>
 </html>
