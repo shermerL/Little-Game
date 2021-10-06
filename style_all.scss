@@ -1,0 +1,156 @@
+$cell-size:100px;
+$anCell-size:calc(#{$cell-size}*.9);
+:root{
+   background-color:white;
+   $cell-size:100px;
+   $anCell-size:calc(#{$cell-size}*.9);
+}
+
+body{
+    margin: 0;
+}
+.gameTable{
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    grid-template-columns: repeat(3,auto);
+    
+    &.x .cell:not(.x):not(.circle):hover::before,
+    &.x .cell:not(.x):not(.circle):hover::after,
+    &circle .cell:not(.x):not(.circle):hover::before,
+    &circle .cell:not(.x):not(.circle):hover::after{
+        background-color: lightgray;
+    }
+    
+}
+
+
+.cell{
+    width: #{$cell-size};
+    height: #{$cell-size};
+    /* background-color: black; */
+    border: 1px solid black;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    cursor: pointer; 
+    
+//生成井字格
+@for $i from 1 through 3{
+    &:nth-child(#{$i}){
+        border-top: none;
+    }
+}
+@for $i from 0 through 2{
+    &:nth-child(#{$i*3+1}){
+        border-left: none;
+    }  
+}
+@for $i from 0 through 2{
+    &:nth-child(#{$i*3+3}){
+        border-right: none;
+    }  
+}
+@for $i from 7 through 9{
+    &:nth-child(#{$i}){
+        border-bottom: none;
+    }
+}
+    &.x::before,
+    &.x::after,
+    &.circle::before,
+    &.circle::after
+    {
+        background-color: black;
+    }
+
+    &.x,&.circle{
+        cursor: not-allowed;
+    }
+
+    &.x::before,
+    &.x::after,
+    .gameTable.x &:not(.x):not(.circle):hover::before,
+    .gameTable.x &:not(.x):not(.circle):hover::after{
+        position: absolute; 
+        content: '';
+        width:calc(#{$anCell-size}*.15);
+        height:#{$anCell-size};
+        background-color: black;
+    }
+
+    &.x::before,
+    .gameTable.x &:hover::before{
+        transform: rotate(45deg);
+    }
+    &.x::after,
+    .gameTable.x &:hover::after{
+        transform: rotate(-45deg);
+    }
+    &.circle::before,
+    &.circle::after,
+    .gameTable.circle &:not(.x):not(.circle):hover::before,
+    .gameTable.circle &:not(.x):not(.circle):hover::after{
+        position: absolute; 
+        content: '';
+        border-radius: 50%;
+        
+    }
+    
+    &.circle::before,
+    .gameTable.circle &:not(.x):not(.circle):hover::before{
+        width:#{$anCell-size};
+        height:#{$anCell-size};
+        /* background-color: black; */
+    }
+    &.circle::after,
+    .gameTable.circle &:not(.x):not(.circle):hover::after{
+        width:calc(#{$anCell-size}*.7);
+        height:calc(#{$anCell-size}*.7);
+        background-color: white;
+    }
+    
+}
+
+
+
+/* 结束样式 */
+.game-Win{
+    display: none;
+    position: fixed;
+    top:0;
+    left:0;
+    right:0;
+    bottom: 0;
+    background-color: black;
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 5rem;
+    flex-direction: column;
+    button:hover{
+        background-color: black;
+        color: white;
+        border-color: white;
+    }
+    &.show{
+        display: flex;
+    }
+}
+.rButton{
+    font-size: 5rem;
+    background-color: white;
+    border: 1px solid black;
+    padding: .25em .5em;
+    cursor: pointer;
+}
+
+
+
+
+
