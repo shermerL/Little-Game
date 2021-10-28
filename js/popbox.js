@@ -1,6 +1,7 @@
 const openModelButtons=document.querySelectorAll('[data-model-target]')
 const closeModelButtons=document.querySelectorAll('[data-close-button]')
-const overlay=document.getElementById('overlay')
+const overlay=getId('overlay')
+
 
 openModelButtons.forEach(button=>{
     button.addEventListener('click',()=>{
@@ -32,3 +33,5 @@ function closeModel(model){
     model.classList.remove('active')
     overlay.classList.remove('active')
 }
+
+
