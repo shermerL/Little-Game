@@ -1,10 +1,13 @@
 const cellElements=document.querySelectorAll('[data-cell]')
-const gameTable=document.getElementById('gameTable')
+
+const gameTable=getId('gameTable')
 const X_CLASS='x'
 const CIRCLE_CLASS='circle'
-const winMsg=document.getElementById('gameWin')
+const winMsg=getId('gameWin')
 const winTextMsg=document.querySelector('[data-win-text]')
-const rButton=document.getElementById('rButton')
+const rButton=getId('rButton')
+//输赢判断条件
+
 const WIN_COMBINATION=[
     [0,1,2],
     [0,4,8],
