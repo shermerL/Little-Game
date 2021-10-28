@@ -13,6 +13,7 @@
     background-color: white;
     width: 400px;
     max-width: 80%;
+
     &.active{
         transform:  translate(-50%,-50%) scale(1);;
     }
@@ -23,6 +24,7 @@
     justify-content: space-between;
     align-items: center;
     border-bottom: 1px solid black;
+
     .title{
         font-size: 1.25rem;
         font-weight: bold;
@@ -51,6 +53,7 @@
     bottom: 0;
     background-color: rgba(0,0,0,.5);
     pointer-events:none;
+
     &.active{
         opacity: 1;
         pointer-events:all ;
