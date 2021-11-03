@@ -11,14 +11,11 @@ function getTagName(TagName)
     
     return document.getElementsByTagName(TagName)
 }
-//获取系统日期
+
+//*获取系统日期
 function getTime()
 {
     var date=new Date()
-   // console.log(getFullYear())
-    //console.log(getMonth()+1)
-    //console.log(getDate())
-    //console.log(date.getDay())
     var year =date.getFullYear()
     var month=date.getMonth()+1
     var dates=date.getDate()
@@ -28,16 +25,14 @@ function getTime()
     return '今天是：'+year+'年'+month+'月'+dates+'日'+arr[day]
 }
 
-
-
-
-//获取body元素
-function getBody()
-{
-    return document.body
-}
-//获取html元素
-function getHtml()
-{
-    return document.documentElement
+//*伪数组转换为数组
+function listToArray(likeArray){
+    var ary=[]
+    try{
+        ary=Array.prototype.slice.call(likeArray)
+    }catch(e){
+        for(var i=0;i<likeArray.length;i++){
+            ary[ary.length]=likeArray[i]
+        }
+    }
 }
